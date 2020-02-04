@@ -23,6 +23,19 @@ stages:
         scriptLocation: 'inlineScript'
         inlineScript: 'az group create -n development -rg -l uksouth'
 
+    - task: AzureResourceManagerTemplateDeployment@3
+      inputs:
+        deploymentScope: 'Resource Group'
+        azureResourceManagerConnection: 'Visual Studio Professional'
+        subscriptionId: '2cfae1d3-e84d-46a1-8c26-63dcdfa6eb87'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'ostestrg01'
+        location: 'UK South'
+        templateLocation: 'URL of the file'
+        csmFileLink: 'https://github.com/jeremylindsayni/EverythingAsCode/blob/master/SimpleAzureAppService/SimpleAzureAppService/WebSite.json'
+        overrideParameters: '-hostingPlanName integration-webfarm'
+        deploymentMode: 'Incremental'
+
 - stage: build_integration
   displayName: 'Build the integration environment resource group'
   dependsOn: build
@@ -47,10 +60,10 @@ stages:
       inputs:
         azureSubscription: '$(subscription)'
         action: 'Create Or Update Resource Group'
-        resourceGroupName: 'integration-rg'
+        resourceGroupName: 'ostestrg01'
         location: 'UK South'
         templateLocation: 'URL of the file'
-        csmFileLink: 'https://raw.githubusercontent.com/jeremylindsayni/EverythingAsCode/master/SimpleAzureAppService/SimpleAzureAppService/WebSite.json'
+        csmFileLink: 'https://github.com/jeremylindsayni/EverythingAsCode/blob/master/SimpleAzureAppService/SimpleAzureAppService/WebSite.json'
         overrideParameters: '-hostingPlanName integration-webfarm'
         deploymentMode: 'Incremental'
 
