@@ -2,7 +2,7 @@ trigger:
 - master
 
 variables:
-  subscription: 'Visual Studio Professional'
+  subscription: 'Visual Studio Professional Subscription(2cfae1d3-e84d-46a1-8c26-63dcdfa6eb87)'
 
 stages:
 - stage: build
