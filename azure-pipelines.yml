@@ -50,7 +50,7 @@ stages:
 
 - stage: deploy_app_service_to_integration
   displayName: 'Deploy the app service to the integration environment'
-  dependsOn: build_integration
+  dependsOn: validate_app_service_arm
   jobs:
   - job: deploy_app_service_to_integration
     pool:
