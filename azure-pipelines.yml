@@ -29,8 +29,8 @@ stages:
       resourceGroupName: integration
       subscription: $(subscription)
 
-- stage: deploy_app_service_to_integration
-  displayName: 'Deploy the app service to the integration environment'
+- stage: validate_app_service_arm
+  displayName: 'Validate the ARM temaplate'
   dependsOn: build_integration
   jobs:
   - job: deploy_app_service_to_integration
