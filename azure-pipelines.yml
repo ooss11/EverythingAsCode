@@ -50,7 +50,7 @@ stages:
 
 - stage: run_system_quality_tests
   displayName: 'Run the system quality tests'
-  dependsOn: deploy_to_integration
+  dependsOn: deploy_app_service_to_integration
   jobs:
   - job: run_non_functional_tests
     pool:
