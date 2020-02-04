@@ -45,7 +45,7 @@ stages:
         location: 'UK South'
         templateLocation: 'URL of the file'
         csmFileLink: 'https://raw.githubusercontent.com/ooss11/EverythingAsCode/master/SimpleAzureAppService/SimpleAzureAppService/WebSite.json'
-        overrideParameters: '-hostingPlanName integration-webfarm'
+        overrideParameters: '-hostingPlanName integration-webfarm -environmentName integration'
         deploymentMode: 'Validation'
 
 - stage: deploy_app_service_to_integration
@@ -64,7 +64,7 @@ stages:
         location: 'UK South'
         templateLocation: 'URL of the file'
         csmFileLink: 'https://raw.githubusercontent.com/ooss11/EverythingAsCode/master/SimpleAzureAppService/SimpleAzureAppService/WebSite.json'
-        overrideParameters: '-hostingPlanName integration-webfarm'
+        overrideParameters: '-hostingPlanName integration-webfarm -environmentName integration'
         deploymentMode: 'Incremental'
 
 - stage: run_system_quality_tests
