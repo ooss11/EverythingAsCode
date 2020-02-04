@@ -15,14 +15,10 @@ stages:
     - script: echo Build
       displayName: 'First step in building the website skeleton'
 
-- stage: build_integration
-  displayName: 'Build the integration environment resource group'
-  dependsOn: build
-  jobs:
-  - template: ci/templates/create-resource-group.yml
-    parameters:
-      name: create_infrastructure
-      displayName: 'First step in building the integration infrastructure'
-      vmImage: 'Ubuntu-16.04'
-      resourceGroupName: integration
-      subscription: $(subscription)
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: 'Visual Studio Professional'
+        scriptType: 'pscore'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az group create -n development-rg -l uksouth'
+
