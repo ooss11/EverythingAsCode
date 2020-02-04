@@ -15,10 +15,11 @@ stages:
     - script: echo Build
       displayName: 'First step in building the website skeleton'
 
+
     - task: AzureCLI@2
       inputs:
         azureSubscription: 'Visual Studio Professional'
-        scriptType: 'ps'
+        scriptType: 'pscore'
         scriptLocation: 'inlineScript'
         inlineScript: 'az group create -n development -rg -l uksouth'
 
