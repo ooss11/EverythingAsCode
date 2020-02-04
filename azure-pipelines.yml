@@ -14,11 +14,9 @@ stages:
     steps:
     - script: echo Build
       displayName: 'First step in building the website skeleton'
-
     - task: AzureCLI@2
       inputs:
-        azureSubscription: 'Visual Studio Professional'
+        azureSubscription: 'Visual Studio Professional Subscription(2cfae1d3-e84d-46a1-8c26-63dcdfa6eb87)'
         scriptType: 'pscore'
         scriptLocation: 'inlineScript'
         inlineScript: 'az group create -n development-rg -l uksouth'
-
