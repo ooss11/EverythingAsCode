@@ -2,7 +2,7 @@ trigger:
 - master
 
 variables:
-  subscription: 'Visual Studio Professional with MSDN'
+  subscription: 'Visual Studio Professional'
 
 stages:
 - stage: build
@@ -14,6 +14,13 @@ stages:
     steps:
     - script: echo Build
       displayName: 'First step in building the website skeleton'
+
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: 'Visual Studio Professional'
+        scriptType: 'ps'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az group create -n development -rg -l uksouth'
 
 - stage: build_integration
   displayName: 'Build the integration environment resource group'
