@@ -6,6 +6,10 @@
       "type": "string",
       "minLength": 1
     },
+    "environmentName": {
+      "type": "string",
+      "minLength": 1
+    },
     "skuName": {
       "type": "string",
       "defaultValue": "F1",
@@ -85,7 +89,8 @@
           },
           "properties": {
             "key1": "value1",
-            "key2": "value2"
+            "key2": "value2",
+            "ASPNETCORE_ENVIRONMENT": "[parameters('environmentName')]"
           }
         }
       ]
