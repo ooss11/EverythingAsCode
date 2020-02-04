@@ -46,6 +46,25 @@ stages:
         templateLocation: 'URL of the file'
         csmFileLink: 'https://raw.githubusercontent.com/ooss11/EverythingAsCode/master/SimpleAzureAppService/SimpleAzureAppService/WebSite.json'
         overrideParameters: '-hostingPlanName integration-webfarm'
+        deploymentMode: 'Validation'
+
+- stage: deploy_app_service_to_integration
+  displayName: 'Deploy the app service to the integration environment'
+  dependsOn: build_integration
+  jobs:
+  - job: deploy_app_service_to_integration
+    pool:
+      vmImage: 'Ubuntu 16.04'
+    steps:
+    - task: AzureResourceGroupDeployment@2
+      inputs:
+        azureSubscription: '$(subscription)'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'integration-rg'
+        location: 'UK South'
+        templateLocation: 'URL of the file'
+        csmFileLink: 'https://raw.githubusercontent.com/ooss11/EverythingAsCode/master/SimpleAzureAppService/SimpleAzureAppService/WebSite.json'
+        overrideParameters: '-hostingPlanName integration-webfarm'
         deploymentMode: 'Incremental'
 
 - stage: run_system_quality_tests
