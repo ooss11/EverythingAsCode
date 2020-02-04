@@ -26,3 +26,22 @@ stages:
       vmImage: 'Ubuntu-16.04'
       resourceGroupName: integration
       subscription: $(subscription)
+
+- stage: deploy_app_service_to_integration
+  displayName: 'Deploy the app service to the integration environment'
+  dependsOn: build_integration
+  jobs:
+  - job: deploy_app_service_to_integration
+    pool:
+      vmImage: 'Ubuntu 16.04'
+    steps:
+    - task: AzureResourceGroupDeployment@2
+      inputs:
+        azureSubscription: '$(subscription)'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'integration-rg'
+        location: 'UK South'
+        templateLocation: 'URL of the file'
+        csmFileLink: 'https://github.com/ooss11/EverythingAsCode/blob/master/SimpleAzureAppService/SimpleAzureAppService/WebSite.json'
+        overrideParameters: '-hostingPlanName integration-webfarm'
+        deploymentMode: 'Incremental'
