@@ -42,6 +42,6 @@ stages:
         resourceGroupName: 'integration-rg'
         location: 'UK South'
         templateLocation: 'URL of the file'
-        csmFileLink: 'https://github.com/ooss11/EverythingAsCode/blob/master/SimpleAzureAppService/SimpleAzureAppService/WebSite.json'
+        csmFileLink: 'https://github.com/jeremylindsayni/EverythingAsCode/blob/master/SimpleAzureAppService/SimpleAzureAppService/WebSite.json'
         overrideParameters: '-hostingPlanName integration-webfarm'
         deploymentMode: 'Incremental'
